@@ -1,21 +1,27 @@
 package parser
 
 class ConsoleUI(
-    engine: ParserEngine
+    engine: WikiSearchEngine
 ) {
 
     private var request = ""
 
-
     init {
         getUserRequest()
-        engine.getAnswerJson(request)
+        try {
+            engine.getAnswerJson(request)
+        } catch (e: Exception) {
+            error("Something went wrong")
+        }
     }
-
 
     private fun getUserRequest() {
         println("Enter your Wikipedia request:")
-        request = readLine()!!
+        try {
+            request = readLine()!!
+        } catch(e: NullPointerException) {
+            error("Request cannot be empty")
+        }
         println("Your request is \"$request\"")
     }
 

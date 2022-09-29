@@ -1,6 +1,6 @@
 package parser
 
 fun main() {
-    val engine = ParserEngine()
+    val engine = WikiSearchEngine()
     ConsoleUI(engine)
 }
