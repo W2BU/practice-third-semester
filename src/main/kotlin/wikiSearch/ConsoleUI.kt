@@ -80,7 +80,7 @@ class ConsoleUI (
             //  print titles
             for (i in 0 until TITLES_ON_PAGE) {
                 try {
-                    println("${i + 1} - ${engine.searchResults[i].first}")
+                    println("${i + 1} - ${engine.searchResults[i + page * TITLES_ON_PAGE].first}")
                 } catch(e: IndexOutOfBoundsException) {
                     println("")
                 }
@@ -101,8 +101,8 @@ class ConsoleUI (
                     } catch (e: Exception) {
                         println("Something went wrong")
                     }
-                TITLES_ON_PAGE -> if (page != 0) page -= 1
-                TITLES_ON_PAGE + 1 -> if (page < totalPages) page += 1
+                TITLES_ON_PAGE + 1 -> if (page != 0) page -= 1
+                TITLES_ON_PAGE + 2 -> if (page < totalPages) page += 1
                 exitCode -> isActive = false
                 else -> println("Unknown option")
             }

@@ -60,11 +60,11 @@ class WikiSearchEngine {
             var title: String = ""
         }
         val queryField = JsonParser.parseString(json).asJsonObject.get("query")
-        hits = queryField.asJsonObject.get("searchinfo").asJsonObject.get("totalhits").asInt
         for (jsonElement in queryField.asJsonObject.get("search").asJsonArray) {
             val pageid: String = jsonElement.asJsonObject.get("pageid").asString
             val title: String = jsonElement.asJsonObject.get("title").asString
             searchResults.add(Pair(title, pageid))
         }
+        hits = searchResults.size
     }
 }
