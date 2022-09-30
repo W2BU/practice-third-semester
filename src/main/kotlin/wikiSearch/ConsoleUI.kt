@@ -40,7 +40,7 @@ class ConsoleUI (
         println("1 - yes, 2 - no")
         var isActive = true
         var confirmed = true
-        var chosenOption = "-1"
+        var chosenOption: String
         while(isActive) {
             chosenOption = readLine()!!
             when(chosenOption) {
@@ -65,8 +65,8 @@ class ConsoleUI (
     private fun showHitsList() {
         var page = 0
         val totalPages = engine.hits.div(TITLES_ON_PAGE)
-        val exitCode = TITLES_ON_PAGE + 2
-        var userInput = -1
+        val exitCode = TITLES_ON_PAGE + 3
+        var userInput: Int
         var isActive = true
         println("Result found with \"$request\": ${engine.hits}\n")
         println("Choose option to open in browser")
@@ -80,13 +80,13 @@ class ConsoleUI (
                     println("")
                 }
             }
-            println("$TITLES_ON_PAGE - Previous    ${page+1} of ${totalPages+1}    ${TITLES_ON_PAGE + 1} - Next")
+            println("${TITLES_ON_PAGE + 1} - Previous    ${page+1} of ${totalPages+1}    ${TITLES_ON_PAGE + 2} - Next")
             println("$exitCode - Exit")
 
             //  choice handling
             userInput = readLine()?.toInt() ?: -1
             when (userInput) {
-                in 0..TITLES_ON_PAGE ->
+                in 1..TITLES_ON_PAGE ->
                     try {
                         engine.openInBrowser(
                             engine.searchResults[userInput - 1 + page * TITLES_ON_PAGE].second
