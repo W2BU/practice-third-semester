@@ -9,17 +9,22 @@ class ConsoleUI (
     private var request = ""
 
     init {
-        readUserRequestFromConsole()
-        var isSuccessful = true
-        try {
-            engine.search(request)
-        } catch (e: Exception) {
-            println("Nothing was found with \"$request\"")
-            isSuccessful = confirmExitDialog()
-        }
+        var isActive = true
+        while(isActive) {
+            readUserRequestFromConsole()
+            var isSuccessful = true
+            try {
+                engine.search(request)
+            } catch (e: Exception) {
+                println("Nothing was found with \"$request\"")
+                isSuccessful = false
+            }
 
-        if (isSuccessful) {
-            showHitsList()
+            if (isSuccessful) {
+                showHitsList()
+            } else {
+                isActive = confirmExitDialog()
+            }
         }
     }
 
