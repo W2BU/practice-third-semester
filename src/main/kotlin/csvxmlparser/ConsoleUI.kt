@@ -28,7 +28,7 @@ class ConsoleUI (
                                  appendLine()
                              }
                          })
-                         println("Execution time = ${parser.executionTime}")
+                         println("Execution time = ${parser.executionTime} milliseconds")
                      } catch (e: Exception) {
                          println(e.message)
                      }

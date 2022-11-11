@@ -9,7 +9,6 @@ import kotlin.system.measureTimeMillis
 
 class CsvXmlParser() {
 
-
     private val entriesCount: HashMap<List<String>, Int> = hashMapOf()
 
     var lastPath: String = ""
@@ -37,7 +36,7 @@ class CsvXmlParser() {
                         s.split(";")
                     )
                 }.collect(Collectors.toList())
-            countDuplicatesAndRows(result)
+            countDuplicatesAndFloors(result)
         }
     }
 
@@ -53,12 +52,12 @@ class CsvXmlParser() {
                         Stream.empty()
                     }
                 }.collect(Collectors.toList())
-            countDuplicatesAndRows(result)
+            countDuplicatesAndFloors(result)
         }
     }
 
-    private fun countDuplicatesAndRows(result: List<List<String>>) {
-        for ((i, fullAddress) in result.withIndex()) {
+    private fun countDuplicatesAndFloors(result: List<List<String>>) {
+        for (fullAddress in result) {
             //  entry data - times repeated
             if (entriesCount.containsKey(fullAddress)) {
                 entriesCount.replace(fullAddress, entriesCount.getValue(fullAddress) + 1)
