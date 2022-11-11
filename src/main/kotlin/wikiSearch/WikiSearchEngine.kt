@@ -53,7 +53,7 @@ class WikiSearchEngine {
     }
 
     /*
-      Parses JSON string singling out related page titles and their ID's into list
+        Parses JSON string singling out related page titles and their ID's into list
      */
     private fun jsonToList(json: String) {
         val article = object {
